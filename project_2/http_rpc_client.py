@@ -4,8 +4,8 @@
 '''This module is a simple rpc client'''
 import json
 import asyncio
-import aiohttp
 import uuid
+import aiohttp
 
 class Client:
     '''
@@ -15,11 +15,10 @@ class Client:
     # Header information which is private and won't be changed
     __headers = {"content-type": "application/json"}
 
-    def __init__(self, addr = "127.0.0.1:8088"):
+    def __init__(self, addr="127.0.0.1:8088"):
         '''
         Initial the instance with the address given
-        And addr will have a default value
-        http://127.0.0.1:8088
+        And addr will have a default value 127.0.0.1:8088
         '''
         self.addr = "http://" + addr
         self.loop = asyncio.get_event_loop()
@@ -37,7 +36,7 @@ class Client:
         #print(self.loop.run_until_complete(asyncio.gather(*tasks)))
         result = self.loop.run_until_complete(self.__json_rpc("time", []))["result"]
         return result
-    
+
     def ram(self):
         '''
         Call the remote function ram()
@@ -56,21 +55,33 @@ class Client:
         result = self.loop.run_until_complete(self.__json_rpc("hdd", []))["result"]
         return result
 
-    def add(self, a, b):
+    def add(self, integer_num_a, integer_num_b):
         '''
-        Call the remote function add(int, int)
+        Call the remote function add(integer_num_a, integer_num_b)
         Return the sum of two integer as type int
         '''
-        
-        result = self.loop.run_until_complete(self.__json_rpc("add", [a, b]))["result"]
+        # Validation
+        if not isinstance(integer_num_a, int) or not isinstance(integer_num_b, int):
+            raise Exception("not an integer")
+
+        result = self.loop.run_until_complete(
+            self.__json_rpc("add", [integer_num_a, integer_num_b])
+            )["result"]
+
         return result
 
-    def sub(self, a, b):
+    def sub(self, integer_num_a, integer_num_b):
         '''
-        Call the remote function sub(<a:int>, <b:int>)
-        Return the result of a - b as type int
+        Call the remote function sub(integer_num_a, integer_num_b)
+        Return the result of integer_num_a - integer_num_b as type int
         '''
-        result = self.loop.run_until_complete(self.__json_rpc("sub", [a, b]))["result"]
+        # Validation
+        if not isinstance(integer_num_a, int) or not isinstance(integer_num_b, int):
+            raise Exception("not an integer")
+
+        result = self.loop.run_until_complete(
+            self.__json_rpc("sub", [integer_num_a, integer_num_b])
+            )["result"]
         return result
 
     def json_to_xml(self, json_data):
@@ -78,9 +89,15 @@ class Client:
         Accept a json string and call the remote function
         Convert the json to xml and return xml string
         '''
+        # Validation
+        try:
+            json.loads(json_data)
+        except:
+            raise Exception("invalid JSON string")
+
         result = self.loop.run_until_complete(self.__json_rpc("json_to_xml", [json_data]))["result"]
         return result
-    
+
     async def __json_rpc(self, method, params):
         '''
         Private method _json_rpc
@@ -94,9 +111,13 @@ class Client:
             "jsonrpc": "2.0",
             "id": str(uuid.uuid1())
         }
-        with aiohttp.ClientSession() as session:
-            async with session.post(
-                self.addr, data = json.dumps(payload),
-                headers = Client.__headers
-                ) as response:
-                return await response.json()
+        try:
+            with aiohttp.ClientSession() as session:
+                async with session.post(
+                    self.addr, data=json.dumps(payload),
+                    headers=Client.__headers
+                    ) as response:
+                    return await response.json()
+        except:
+            raise Exception("server unreachable")
+            
