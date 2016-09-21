@@ -4,7 +4,7 @@
 '''This module is a simple rpc server'''
 import time as time_lib
 import json
-import xmltodict
+import dicttoxml
 from gevent import monkey
 from gevent.wsgi import WSGIServer
 import psutil
@@ -64,7 +64,7 @@ def json_to_xml(json_data):
     '''
     Convert json to xml
     '''
-    return xmltodict.unparse(json.loads(json_data))
+    return dicttoxml.dicttoxml(json.loads(json_data)).decode("utf-8")
 
 if __name__ == "__main__":
     # Listen port 8088
