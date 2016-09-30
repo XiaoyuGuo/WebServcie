@@ -145,7 +145,6 @@ class GithubClient:
                         "name":x["name"],
                         "full_name":x["full_name"],
                         "login":x["owner"]["login"],
-                        "login_id":x["owner"]["id"],
                         "url":x["url"]
                     }
                 )
