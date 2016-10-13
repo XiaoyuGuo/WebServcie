@@ -23,8 +23,8 @@ def recieve_image():
         resp.status_code = 400
         return resp
 
-    image_filename = 'temp' # Create an unique string to identify the image
-    image.save(image_filename) # Save image and filename is the unique string before
+    image_filename = 'temp'
+    image.save(image_filename)
 
     try:
         scale = float(scale)
@@ -52,7 +52,6 @@ def recieve_image():
         if scale == 1:
             pass
         else:
-            # Try to resize the image and get content-type
             resize_image(image_filename, scale)
 
         resp = Response(open(image_filename, 'rb'), content_type='image/' + str(image_type).lower())
