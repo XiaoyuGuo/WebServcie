@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Computer Monitor</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/monitor.css') }}" />
+</head>
+
+<body>
+	<div class="top-bar" style="background-color: rgba(44, 56, 64, 1);">
+		<div class="top-bar-left">
+			<ul class="dropdown menu" data-dropdown-menu>
+				<li class="menu-text monitor-logo">Computer Monitor</li>
+			</ul>
+		</div>
+		<div class="top-bar-right">
+			<ul class="menu" style="background-color: rgba(44, 56, 64, 1);">
+				<li><button id="leave-btn" type="button" class="alert button monitor-leave">Leave</button></li>
+			</ul>
+		</div>
+	</div>
+	<div class="monitor-content">
+		<ul class="tabs" data-tabs id="example-tabs">
+			<li id="cpu-tab" class="tabs-title is-active"><a href="#cpu" aria-selected="true" style="font-size: 16px; font-weight: 600;">CPU</a></li>
+			<li id="ram-tab" class="tabs-title"><a href="#ram" style="font-size: 16px; font-weight: 600;">RAM</a></li>
+		</ul>
+
+		<div class="tabs-content" data-tabs-content="example-tabs">
+			<div class="tabs-panel is-active" id="cpu-panel">
+				<div id="cpu-chart"></div>
+			</div>
+			<div class="tabs-panel" id="ram-panel">
+				<div id="ram-chart"></div>
+			</div>
+		</div>
+	</div>
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/what-input.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/exporting.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/monitor.js') }}"></script>
+</body>
+
+</html>

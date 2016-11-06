@@ -1,0 +1,17 @@
+@charset "UTF-8";
+.monitor-logo {
+    padding: 0px;
+    color: rgba(230, 230, 230, 1);
+    font-size: 36px;
+    background-color: rgba(44, 56, 64, 1);
+}
+
+.monitor-leave {
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.monitor-content {
+    padding: 20px;
+}

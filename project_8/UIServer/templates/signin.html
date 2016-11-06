@@ -1,0 +1,83 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Computer Monitor</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/foundation.css') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/signin.css') }}" />
+</head>
+
+<body>
+	<div class="signin-form">
+		<div class="logo">Computer Monitor</div>
+		<ul class="tabs" data-tabs id="example-tabs">
+			<li id="signin-tab" class="tabs-title is-active"><a href="#signin" aria-selected="true" style="font-size: 16px; font-weight: 600;">Sign In</a></li>
+			<li id="signup-tab" class="tabs-title"><a href="#signup" style="font-size: 16px; font-weight: 600;">Sign Up</a></li>
+		</ul>
+
+		<div class="tabs-content" data-tabs-content="example-tabs">
+			<div class="tabs-panel is-active" id="signin-panel">
+				<form>
+					<div class="row">
+						<div class="medium-6 columns signin-input">
+							<label>Email
+        <input id="signin-email" type="email" placeholder="Email Address">
+      </label>
+						</div>
+						<div class="medium-6 columns signin-input">
+							<label>Password
+        <input id="signin-password" type="password" placeholder="Enter your password">
+      </label>
+						</div>
+						<div class="medium-6 columns signin-input">
+							<button id="signin-submit" type="button" class="success button" style="width: 100%;">Sign In Your Account</button></div>
+					</div>
+					<div id="signin-alert" class="callout alert" style="margin: 15px; display: none;">
+					</div>
+				</form>
+			</div>
+			<div class="tabs-panel" id="signup-panel">
+				<form>
+					<div class="row">
+						<div class="medium-6 columns signin-input">
+							<label>Email
+        <input id="signup-email" type="email" placeholder="Email Address">
+      </label>
+						</div>
+
+						<div class="medium-6 columns signin-input">
+							<label>Password
+        <input id="signup-password" type="password" placeholder="Enter your password">
+      </label>
+
+						</div>
+						<div class="medium-6 columns signin-input">
+							<label>Confirm
+        <input id="signup-confirm" type="password" placeholder="Repeat your password">
+      </label>
+						</div>
+						<div class="medium-6 columns signin-input">
+							<button id="signup-submit" type="button" class="success button" style="width: 100%;">Sign Up This Account</button></div>
+					</div>
+			</div>
+			<div id="signup-alert" class="callout alert" style="margin: 15px; display: none;">
+
+			</div>
+			<div id="signup-success" class="callout success" style="margin: 15px; display: none;"></div>
+			</form>
+		</div>
+	</div>
+
+	</div>
+	<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/what-input.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/foundation.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/highcharts.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/exporting.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/signin.js') }}"></script>
+</body>
+
+</html>
